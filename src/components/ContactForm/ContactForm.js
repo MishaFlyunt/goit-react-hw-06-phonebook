@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
+import toast from 'react-hot-toast';
 import { addContact } from '../../redux/actions';
 import {
   FormStyled,
@@ -26,8 +27,22 @@ const schema = Yup.object().shape({
     .required('Please enter the number'),
 });
 
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = () => {
+  const contacts = useSelector(state => state.contact);
   const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    if(contacts.some(
+      contact =>
+        contact.name.toLowerCase().trim() ===
+          values.name.toLowerCase().trim() ||
+        contact.number.trim() === values.number.trim()
+    )) {
+      return toast.error('A contact with that name or number already exists');
+    }
+     dispatch(addContact({ ...values, id: nanoid() }));
+     actions.resetForm();
+  };
 
   return (
     <Formik
@@ -35,11 +50,7 @@ export const ContactForm = ({ onAdd }) => {
         name: '',
         number: '',
       }}
-      onSubmit={(values, actions) => {
-        console.log(values);
-        dispatch(addContact({ ...values, id: nanoid() }));
-        actions.resetForm();
-      }}
+      onSubmit={handleSubmit}
       validationSchema={schema}
     >
       <FormStyled>

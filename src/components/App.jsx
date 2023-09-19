@@ -1,20 +1,12 @@
 import { GlobalStyle, Container } from './GlobalStyle';
 import React from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
-  // const [contacts, setContacts] = useState(() => {
-  //   const savedItem = localStorage.getItem('conact-filter');
-  //   const parsedItem = JSON.parse(savedItem);
-  //   return parsedItem || contact;
-  // });
-
-  // const [filter, setFilter] = useState('');
-
   // useEffect(() => {
   //   if (setContacts !== contacts) {
   //     // console.log(contacts);
@@ -30,16 +22,6 @@ export const App = () => {
   //   setContacts(prevState => prevState.filter(cont => cont.id !== contId));
   // };
 
-  // const addName = newName => {
-  //   contacts.some(
-  //     contact =>
-  //       contact.name.toLowerCase().trim() ===
-  //         newName.name.toLowerCase().trim() ||
-  //       contact.number.trim() === newName.number.trim()
-  //   )
-  //     ? toast.error('A contact with that name or number already exists')
-  //     : setContacts(prevState => [...prevState, newName]);
-  // };
 
   // const getVisibleContacts = () => {
   //   const lowerCaseFilter = filter.toLowerCase();
