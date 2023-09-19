@@ -1,6 +1,9 @@
 import { LabelStyled, FilterStyled } from './Filter.styled';
 
 export const Filter = ({ filter, onChangeFilter }) => {
+  // const changeFilter = newFilter => {
+  // //   setFilter(newFilter.target.value.toLowerCase().trim());
+  // // };
   return (
     <FilterStyled>
       <LabelStyled>

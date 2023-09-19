@@ -7,12 +7,6 @@ import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
-  // useEffect(() => {
-  //   if (setContacts !== contacts) {
-  //     // console.log(contacts);
-  //     localStorage.setItem('conact-filter', JSON.stringify(contacts));
-  //   }
-  // }, [contacts]);
 
   // const changeFilter = newFilter => {
   //   setFilter(newFilter.target.value.toLowerCase().trim());
