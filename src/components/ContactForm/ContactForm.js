@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import toast from 'react-hot-toast';
-import { addContact } from '../../redux/actions';
+import { addContact } from '../../redux/contactsSlice';
 import {
   FormStyled,
   LabelStylet,
@@ -28,7 +28,7 @@ const schema = Yup.object().shape({
 });
 
 export const ContactForm = () => {
-  const contacts = useSelector(state => state.contact);
+  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
