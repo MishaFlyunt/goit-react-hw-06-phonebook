@@ -1,9 +1,11 @@
 import { LabelStyled, FilterStyled } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { filterContact } from '../../redux/filtersSlice';
 
 export const Filter = () => {
-  
+  const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
+
   return (
     <FilterStyled>
       <LabelStyled>
@@ -11,8 +13,10 @@ export const Filter = () => {
         <input
           type="text"
           name="filter"
-          // value={filter}
-          // onChange={changeSearchTerm}
+          value={filter}
+          onChange={e => {
+            dispatch(filterContact(e.target.value.toLowerCase().trim()));
+          }}
         />
       </LabelStyled>
     </FilterStyled>

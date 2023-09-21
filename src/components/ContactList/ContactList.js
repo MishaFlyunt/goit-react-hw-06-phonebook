@@ -9,19 +9,35 @@ import {
 
 export const ContactList = () => {
   const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
+  const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch(deleteContact(contacts.id));
+  // const getVisibleContacts = () => {
+  //   const lowerCaseFilter = filter.toLowerCase();
 
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().trim().includes(lowerCaseFilter)
+  //   );
+  // };
+
+  const getContacts = contacts.filter(({ name }) =>
+    name.toLowerCase().trim().includes(filter.toLowerCase())
+  );
+  // const getContact = getVisibleContacts();
+  // console.log(getVisibleContacts);
   return (
     <ContactListStyled>
-      {contacts.map(({ id, name, number }) => (
+      {getContacts.map(({ id, name, number }) => (
         <ContactItemStyled key={id}>
           <p>
             {name}: {number}
           </p>
-          <ButtonStyled type="button" onClick={handleDelete}>
+          <ButtonStyled
+            type="button"
+            onClick={() => {
+              dispatch(deleteContact(id));
+            }}
+          >
             Delete
           </ButtonStyled>
         </ContactItemStyled>
