@@ -8,7 +8,7 @@ import {
 } from './ContactList.styled';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
@@ -19,12 +19,12 @@ export const ContactList = () => {
   //     contact.name.toLowerCase().trim().includes(lowerCaseFilter)
   //   );
   // };
-
+ console.log(contacts);
   const getContacts = contacts.filter(({ name }) =>
     name.toLowerCase().trim().includes(filter.toLowerCase())
   );
   // const getContact = getVisibleContacts();
-  // console.log(getVisibleContacts);
+ 
   return (
     <ContactListStyled>
       {getContacts.map(({ id, name, number }) => (
